@@ -47,6 +47,9 @@ Vagrantfile something like this:
 
 Installation
 ============
+For a more thorough guide visit:
+http://blog.119labs.com/2012/03/rails-vagrant-chef/ 
+
 I suggest installing through librarian-chef.  In order to do so add the
 following to your Cheffile:
 
