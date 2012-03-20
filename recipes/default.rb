@@ -42,16 +42,11 @@ template "/etc/unicorn.cfg" do
   variables( :app_dir => app_dir)
 end
 
-execute "bundle-rails" do
-  cwd app_dir
-  command "bundle install"
-  action :run
-end
-
-execute "unicorn-rails" do
-  cwd app_dir
-  command "bundle exec unicorn -c /etc/unicorn.cfg -D"
-  action :run
+rbenv_script "run-rails" do
+  code <<-EOH
+    bundle install
+    bundle exec unicorn -c /etc/unicorn.cfg -D
+  EOH
 end
 
 template "/etc/nginx/sites-enabled/default" do
