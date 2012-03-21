@@ -20,7 +20,14 @@ rbenv_global "1.9.2-p290"
 rbenv_gem "bundler"
 rbenv_gem "rails"
 
-file "/var/run/unicorn.pid" do
+directory "/var/run/unicorn" do
+  owner "root"
+  group "root"
+  mode "777"
+  action :create_if_missing
+end
+
+file "/var/run/unicorn/master.pid" do
   owner "root"
   group "root"
   mode "666"
