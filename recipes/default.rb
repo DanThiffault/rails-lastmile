@@ -12,7 +12,6 @@ class Chef::Recipe
 end
 
 app_dir = node['rails-lastmile']['app_dir']
-#app_dir = '/vagrant/'
 
 rbenv_ruby "1.9.2-p290"
 rbenv_global "1.9.2-p290"
@@ -24,7 +23,7 @@ directory "/var/run/unicorn" do
   owner "root"
   group "root"
   mode "777"
-  action :create_if_missing
+  action :create
 end
 
 file "/var/run/unicorn/master.pid" do
