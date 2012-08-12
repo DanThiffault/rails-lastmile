@@ -62,10 +62,10 @@ template "/etc/nginx/sites-enabled/default" do
   owner "root"
   group "root"
   mode "644"
-  source "ngnix.erb"
+  source "nginx.erb"
   variables( :static_root => "#{app_dir}/public")
-  notifies :restart, "service[ngnix]"
+  notifies :restart, "service[nginx]"
 end
 
 service "unicorn"
-service "ngnix"
+service "nginx"
