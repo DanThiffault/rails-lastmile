@@ -13,11 +13,10 @@ end
 
 app_dir = node['rails-lastmile']['app_dir']
 
-rbenv_ruby "1.9.2-p290"
-rbenv_global "1.9.2-p290"
+include_recipe "rails-lastmile::setup"
 
-rbenv_gem "bundler"
-rbenv_gem "rails"
+include_recipe "nginx"
+include_recipe "unicorn"
 
 directory "/var/run/unicorn" do
   owner "root"
