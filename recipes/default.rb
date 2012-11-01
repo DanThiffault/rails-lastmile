@@ -48,7 +48,7 @@ template "/etc/unicorn.cfg" do
 end
 
 rbenv_script "run-rails" do
-  rbenv_version "1.9.2-p290"
+  rbenv_version "1.9.3-p286"
   cwd app_dir
 
   code <<-EOH
