@@ -90,6 +90,7 @@ In order to use with vagrant make a Vagrantfile something like this:
   end
 ```
 
+Don't forget that you need to have the unicorn gem in your Gemfile.
 Last thing to do is boot up the virtual machine. With the command `vagrant up`
 
 This will take a while depending on your internet connection and computer speed. After the command completes you should have a
