@@ -18,30 +18,14 @@ Usage
 Vagrant
 -------
 Vagrant is the first environment rails-lastmile supports. I based my
-build off of the lucid64 base box. In order to use with vagrant make a
+build off of the precise64 base box. In order to use with vagrant make a
 Vagrantfile something like this:
 
 ```ruby
  config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks","cookbooks-src"]
 
-    chef.add_recipe "apt"
-    chef.add_recipe "ruby_build"
-    chef.add_recipe "rbenv::system"
-    chef.add_recipe "rbenv::vagrant"
-    chef.add_recipe "nginx"
-    chef.add_recipe "unicorn"
     chef.add_recipe "rails-lastmile"
-
-    chef.json = {
-      'rvm' => {
-        'default_ruby' => 'ruby-1.9.2-p290',
-        'gem_package' => {
-          'rvm_string' => 'ruby-1.9.2-p290'
-        }
-      }
-    }
-
   end
 ```
 
