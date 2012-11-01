@@ -12,7 +12,7 @@ Defaults to "/vagrant".
 Installation
 ============
 
-I suggest installing through (librarian-chef) [https://github.com/applicationsonline/librarian]. Librarian
+I suggest installing through [librarian-chef](https://github.com/applicationsonline/librarian). Librarian
 manages chef recipes analogous to how bundler managers gems. So first install librarian:
 
 ```
@@ -67,7 +67,7 @@ below for how to deploy to a particular environment.
 Vagrant
 -------
 Vagrant is the first environment rails-lastmile supports. Firstly you need to install
-and setup Vagrant in this project. Make sure to install the lastest virtual box from (here) [https://www.virtualbox.org]
+and setup Vagrant in this project. Make sure to install the lastest virtual box from [here](https://www.virtualbox.org)
 
 ```
 # Install the gem
