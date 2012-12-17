@@ -41,7 +41,7 @@ cookbook 'build-essential'
 cookbook 'ruby_build',
   :git => 'git://github.com/fnichol/chef-ruby_build.git', :ref => 'v0.6.2'
 cookbook 'rbenv',
-  :git => 'https://github.com/fnichol/chef-rbenv', :ref => 'v0.6.10'
+  :git => 'https://github.com/fnichol/chef-rbenv', :ref => '7d9b66f20d6edb786720b22919fd53e698fce12b'
 cookbook 'apt',
   :git => 'https://github.com/opscode-cookbooks/apt'                                                                                                                              
 cookbook 'unicorn'
