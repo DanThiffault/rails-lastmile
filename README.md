@@ -101,8 +101,8 @@ FAQ
 ===
 
  * My cpu is pegged at 100% after deploying. Ensure that you have the following two lines in your Gemfile when deploying to a linux box:
-   ```ruby
+```ruby
    gem "execjs"
    gem "therubyracer"
-   ```
+```
 
