@@ -96,3 +96,13 @@ Last thing to do is boot up the virtual machine. With the command `vagrant up`
 This will take a while depending on your internet connection and computer speed. After the command completes you should have a
 fully deployed app on your vagrant box.
 
+
+FAQ
+===
+
+ * My cpu is pegged at 100% after deploying. Ensure that you have the following two lines in your Gemfile when deploying to a linux box:
+   ```ruby
+   gem "execjs"
+   gem "therubyracer"
+   ```
+
