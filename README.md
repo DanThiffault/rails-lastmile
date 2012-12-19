@@ -100,7 +100,8 @@ fully deployed app on your vagrant box.
 FAQ
 ===
 
- * My cpu is pegged at 100% after deploying. Ensure that you have the following two lines in your Gemfile when deploying to a linux box:
+Q.  My cpu is pegged at 100% after deploying. Ensure that you have the following two lines in your Gemfile when deploying to a linux box:
+
 ```ruby
    gem "execjs"
    gem "therubyracer"
