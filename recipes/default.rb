@@ -48,11 +48,12 @@ template "/etc/unicorn.cfg" do
 end
 
 rbenv_script "run-rails" do
-  rbenv_version "1.9.3-p286"
+  rbenv_version node['rails-lastmile']['ruby_version']
   cwd app_dir
 
   code <<-EOH
     bundle install
+    bundle exec rake db:migrate
     ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D
   EOH
 end
