@@ -27,7 +27,7 @@ echo tmp >> .gitignore
 librarian-chef init
 
 # Create a spot for vendored cookbooks
-mkdir cookbooks-src 
+mkdir cookbooks-src
 
 # Clone rails-lastmile into vendored cookbooks
 git submodule add git://github.com/DanThiffault/rails-lastmile.git cookbooks-src/rails-lastmile
@@ -43,10 +43,10 @@ cookbook 'ruby_build',
 cookbook 'rbenv',
   :git => 'https://github.com/fnichol/chef-rbenv', :ref => '7d9b66f20d6edb786720b22919fd53e698fce12b'
 cookbook 'apt',
-  :git => 'https://github.com/opscode-cookbooks/apt'                                                                                                                              
+  :git => 'https://github.com/opscode-cookbooks/apt'
 cookbook 'unicorn'
 cookbook  'nginx'
-cookbook  'runit' 
+cookbook  'runit'
 ```
 
 Any time you make changes to your Cheffile be sure to run
@@ -61,7 +61,7 @@ managed by librarian they will be overwritten.
 Usage
 =====
 
-The goal of rails-lastmile is to make deployments to different environments as similar as possible. Check the subsections 
+The goal of rails-lastmile is to make deployments to different environments as similar as possible. Check the subsections
 below for how to deploy to a particular environment.
 
 Vagrant
@@ -83,10 +83,16 @@ vagrant init precise64
 In order to use with vagrant make a Vagrantfile something like this:
 
 ```ruby
- config.vm.provision :chef_solo do |chef|
+  config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks","cookbooks-src"]
 
     chef.add_recipe "rails-lastmile"
+    chef.json = {
+      'rails-lastmile' => {
+         'app_dir' => '/path/to/app',
+         'ruby_version' => '1.9.3-p385'
+      }
+    }
   end
 ```
 

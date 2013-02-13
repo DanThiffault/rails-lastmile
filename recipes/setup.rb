@@ -11,7 +11,7 @@ class Chef::Recipe
     include Chef::RubyBuild::RecipeHelpers
 end
 
-node['rbenv']['rubies'] = [ "1.9.3-p286"]
+node['rbenv']['rubies'] = [ node['rails-lastmile']['ruby_version'] ]
 
 include_recipe "apt"
 package "build-essential"
@@ -20,7 +20,7 @@ include_recipe "ruby_build"
 include_recipe "rbenv::system"
 include_recipe "rbenv::vagrant"
 
-rbenv_global "1.9.3-p286"
+rbenv_global node['rails-lastmile']['ruby_version']
 rbenv_gem "bundler"
 rbenv_gem "rails"
 
