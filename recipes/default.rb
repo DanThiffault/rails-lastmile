@@ -53,6 +53,7 @@ rbenv_script "run-rails" do
 
   code <<-EOH
     bundle install
+    bundle exec rake db:migrate
     ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D
   EOH
 end
