@@ -2,9 +2,9 @@
 # Cookbook Name:: rails-bootstrap
 # Recipe:: default
 #
-# Copyright 2012, 119 Labs LLC
+# Copyright 2013, 119 Labs LLC
 #
-# All rights reserved - Do Not Redistribute
+# See license.txt for details
 #
 class Chef::Recipe
     # mix in recipe helpers
