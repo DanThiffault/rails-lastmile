@@ -24,3 +24,4 @@ rbenv_global node['rails-lastmile']['ruby_version']
 rbenv_gem "bundler"
 rbenv_gem "rails"
 
+include_recipe "database"
