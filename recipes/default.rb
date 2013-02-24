@@ -15,6 +15,7 @@ app_dir = node['rails-lastmile']['app_dir']
 
 include_recipe "rails-lastmile::setup"
 
+gem_package "pg"
 include_recipe "rails-lastmile::postgresql"
 
 include_recipe "nginx"

@@ -9,11 +9,11 @@
 
 include_recipe "database"
 
-chef_gem 'pg'
+#node.default["postgresql"]["password"]["postgres"] = "szstpq13"
 
 dbconn = {
   :host => "localhost",
-  :port => node["postgresql"]["port"],
+  :port => node['postgresql']['config']['port'],
   :username => "postgres",
   :password => node["postgresql"]["password"]["postgres"]
 }
@@ -26,3 +26,16 @@ database_user node["rails-lastmile"]["postgresql"]["username"] do
   action :create
 end
 
+database node['rails-lastmile']['postgresql']['dbname'] do
+  connection dbconn
+  provider Chef::Provider::Database::Postgresql
+  action :create
+end
+
+# grant all privileges on all tables in chosen dbname
+postgresql_database_user node["rails-lastmile"]["postgresql"]["username"] do
+  connection dbconn
+  database_name node['rails-lastmile']['postgresql']['dbname']
+  privileges [:all]
+  action :grant
+end
