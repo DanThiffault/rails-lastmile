@@ -7,3 +7,5 @@ version          "0.1.0"
 
 depends "nginx"
 depends "unicorn"
+depends "postgresql"
+depends "database"
