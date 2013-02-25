@@ -23,4 +23,3 @@ include_recipe "rbenv::vagrant"
 rbenv_global node['rails-lastmile']['ruby_version']
 rbenv_gem "bundler"
 rbenv_gem "rails"
-

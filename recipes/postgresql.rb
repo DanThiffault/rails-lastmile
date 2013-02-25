@@ -7,35 +7,40 @@
 # See license.txt for details
 #
 
-include_recipe "database"
+include_recipe "database::postgresql"
 
-#node.default["postgresql"]["password"]["postgres"] = "szstpq13"
+# Helper variables
+dbname = node['rails-lastmile']['postgresql']['dbname']
+dbuser = node['rails-lastmile']['postgresql']['username']
+dbpass = node['rails-lastmile']['postgresql']['password']
+dbhost = node['rails-lastmile']['postgresql']['host']
 
 dbconn = {
-  :host => "localhost",
+  :host => dbhost,
   :port => node['postgresql']['config']['port'],
   :username => "postgres",
   :password => node["postgresql"]["password"]["postgres"]
 }
 
-# Create a user that the agent will use
-database_user node["rails-lastmile"]["postgresql"]["username"] do
-  connection dbconn
-  password node["rails-lastmile"]["postgresql"]["password"]
-  provider Chef::Provider::Database::PostgresqlUser
-  action :create
-end
-
-database node['rails-lastmile']['postgresql']['dbname'] do
+database dbname do
   connection dbconn
   provider Chef::Provider::Database::Postgresql
   action :create
 end
 
-# grant all privileges on all tables in chosen dbname
-postgresql_database_user node["rails-lastmile"]["postgresql"]["username"] do
+# Create a user that the agent will use
+database_user dbuser do
   connection dbconn
-  database_name node['rails-lastmile']['postgresql']['dbname']
+  password dbpass
+  database_name dbname
+  provider Chef::Provider::Database::PostgresqlUser
+  action :create
+end
+
+# grant all privileges on all tables in chosen dbname
+database_user dbuser do
+  connection dbconn
+  database_name dbname
   privileges [:all]
   action :grant
 end
