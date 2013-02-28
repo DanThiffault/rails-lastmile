@@ -50,12 +50,20 @@ end
 rbenv_script "run-rails" do
   rbenv_version node['rails-lastmile']['ruby_version']
   cwd app_dir
-
-  code <<-EOH
-    bundle install
-    bundle exec rake db:migrate
-    ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D
-  EOH
+  if node['rails-lastmile']['reset_db']
+    code <<-EOT1
+      bundle install
+      bundle exec rake db:drop
+      bundle exec rake db:setup
+      ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D --env #{node['rails-lastmile']['environment']}
+    EOT1
+  else
+    code <<-EOT2
+      bundle install
+      bundle exec rake db:migrate
+      ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D --env #{node['rails-lastmile']['environment']}
+    EOT2
+  end
 end
 
 template "/etc/nginx/sites-enabled/default" do
