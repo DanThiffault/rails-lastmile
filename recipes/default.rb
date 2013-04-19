@@ -55,6 +55,7 @@ rbenv_script "run-rails" do
       bundle install
       bundle exec rake db:drop
       bundle exec rake db:setup
+      bundle exec rake db:test:prepare
       ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D --env #{node['rails-lastmile']['environment']}
     EOT1
   else
