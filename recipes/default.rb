@@ -53,15 +53,16 @@ rbenv_script "run-rails" do
   if node['rails-lastmile']['reset_db']
     code <<-EOT1
       bundle install
-      bundle exec rake db:drop
-      bundle exec rake db:setup
-      bundle exec rake db:test:prepare
+      bundle exec rake db:reset
+      bundle exec rake db:test:load
       ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D --env #{node['rails-lastmile']['environment']}
     EOT1
   else
     code <<-EOT2
       bundle install
+      bundle exec rake db:create
       bundle exec rake db:migrate
+      bundle exec rake db:test:load
       ps -p `cat /var/run/unicorn/master.pid` &>/dev/null || bundle exec unicorn -c /etc/unicorn.cfg -D --env #{node['rails-lastmile']['environment']}
     EOT2
   end
