@@ -5,3 +5,12 @@ default['rails-lastmile']['ruby_version'] = "1.9.3-p385"
 default['rails-lastmile']['reset_db'] = false
 
 default['rails-lastmile']['environment'] = 'development'
+
+node.default[:unicorn][:worker_timeout] = 30
+node.default[:unicorn][:preload_app] = true
+node.default[:unicorn][:worker_processes] = 2
+node.default[:unicorn][:listen] = '/tmp/unicorn.todo.sock'
+node.default[:unicorn][:pid] = '/var/run/unicorn/master.pid'
+node.default[:unicorn][:stdout_path] = '/var/log/unicorn.log'
+node.default[:unicorn][:stderr_path] = '/var/log/unicorn.log'
+node.set[:unicorn][:options] = { :backlog => 100 }

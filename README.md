@@ -92,6 +92,9 @@ In order to use with vagrant make a Vagrantfile something like this:
          'app_dir' => '/path/to/app',
          'ruby_version' => '1.9.3-p385',
          'nginx_ssl' => false
+      },
+      'unicorn' => {
+        'worker_processes' => 1
       }
     }
   end
