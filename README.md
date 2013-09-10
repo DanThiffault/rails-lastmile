@@ -90,7 +90,8 @@ In order to use with vagrant make a Vagrantfile something like this:
     chef.json = {
       'rails-lastmile' => {
          'app_dir' => '/path/to/app',
-         'ruby_version' => '1.9.3-p385'
+         'ruby_version' => '1.9.3-p385',
+         'nginx_ssl' => false
       }
     }
   end
@@ -113,3 +114,13 @@ Q.  My cpu is pegged at 100% after deploying. Ensure that you have the following
    gem "therubyracer"
 ```
 
+Q.  I want to enable SSl. How can I do that?
+
+Ensure you have 'nginx_ssl' set to true in your json file:
+    chef.json = {
+      'rails-lastmile' => {
+         'nginx_ssl' => true
+      }
+
+Then generate self signed certificates and put them into config/certs inside your app next the the Vagrantfile. Example instructions:
+http://www.akadia.com/services/ssh_test_certificate.html
