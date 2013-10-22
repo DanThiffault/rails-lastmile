@@ -39,12 +39,17 @@ file "/var/log/unicorn.log" do
   action :create_if_missing
 end
 
-template "/etc/unicorn.cfg" do
-  owner "root"
-  group "root"
-  mode "644"
-  source "unicorn.erb"
-  variables( :app_dir => app_dir)
+
+unicorn_config "/etc/unicorn.cfg" do
+  listen( { node[:unicorn][:listen] => node[:unicorn][:options] })
+  pid node[:unicorn][:pid]
+  working_directory app_dir
+  worker_timeout node[:unicorn][:worker_timeout]
+  stdout_path node[:unicorn][:stdout_path]
+  stderr_path node[:unicorn][:stderr_path]
+  preload_app node[:unicorn][:preload_app]
+  worker_processes node[:unicorn][:worker_processes]
+  before_fork node[:unicorn][:before_fork]
 end
 
 rbenv_script "run-rails" do
