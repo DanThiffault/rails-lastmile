@@ -6,6 +6,8 @@ default['rails-lastmile']['reset_db'] = false
 
 default['rails-lastmile']['environment'] = 'development'
 
+default['rails-lastmile']['prep_db_with'] = 'db:migrate'
+
 node.default[:unicorn][:worker_timeout] = 30
 node.default[:unicorn][:preload_app] = true
 node.default[:unicorn][:worker_processes] = 2
