@@ -5,6 +5,7 @@ default['rails-lastmile']['ruby_version'] = "1.9.3-p385"
 default['rails-lastmile']['reset_db'] = false
 
 default['rails-lastmile']['environment'] = 'development'
+default['rails-lastmile']['bunder_args'] = ''
 
 node.default[:unicorn][:worker_timeout] = 30
 node.default[:unicorn][:preload_app] = true
