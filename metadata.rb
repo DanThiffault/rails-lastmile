@@ -1,3 +1,4 @@
+name             "rails-lastmile"
 maintainer       "119 Labs LLC"
 maintainer_email "dan@119labs.com"
 license          "All rights reserved"
