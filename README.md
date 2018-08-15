@@ -125,5 +125,5 @@ Ensure you have 'nginx_ssl' set to true in your json file:
          'nginx_ssl' => true
       }
 
-Then generate self signed certificates and put them into config/certs inside your app next the the Vagrantfile. Example instructions:
+Then generate self signed certificates and put them into config/certs inside your app next the Vagrantfile. Example instructions:
 http://www.akadia.com/services/ssh_test_certificate.html
